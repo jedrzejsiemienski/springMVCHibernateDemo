@@ -65,6 +65,8 @@
     <tr>
         <th width="80">Employee ID</th>
         <th width="120">Employee Name</th>
+        <th width="120">Employee Last Name</th>
+        <th width="120">Employee Position</th>
         <th width="60">Edit</th>
         <th width="60">Delete</th>
     </tr>
@@ -72,6 +74,8 @@
         <tr>
             <td>${employee.id}</td>
             <td>${employee.name}</td>
+            <td>${employee.lastName}</td>
+            <td>${employee.position.name}</td>
             <td><a href="<c:url value='/edit/${employee.id}' />" >Edit</a></td>
             <td><a href="<c:url value='/remove/${employee.id}' />" >Delete</a></td>
         </tr>
