@@ -67,7 +67,9 @@ public class EmployeesController {
     	   	
     	Map<Long, String> items = new LinkedHashMap<Long, String>();
     	for(Item item : itemsService.getItems()){
-    		items.put(item.getId(), item.getName());
+    		if(item.getQuantity() > 0){
+    			items.put(item.getId(), item.getName() + " (pozostalo sztuk " + item.getQuantity() + ")");
+    		}
     	}
     	
         model.addAttribute("employee", e);
@@ -91,18 +93,30 @@ public class EmployeesController {
     	logger.info("item {}", item);
     	logger.info("employee {}", employee);
     	
-    	if(item != null && employee != null){
+    	if(item != null && item.getQuantity() > 0 && employee != null){
     		Possession p = new Possession();
         	p.setItem(item);
         	p.setEmployee(employee);
-        	
-        	logger.info("Possession {}", p);
-        	
         	employeesService.addPossession(p);
         	
-        	logger.info("Added!");
+        	item.setQuantity(item.getQuantity() - 1);
+        	itemsService.updateItem(item);
     	}
     	
     	return "redirect:/edit/" + pd.getEmployeeId();
+    }
+    
+    @RequestMapping("/removePossession/{pid}/{eid}")
+    public String removePossession(@PathVariable("pid") long pid, @PathVariable("eid") long eid){
+    	logger.info("pid = {}", pid);
+    	logger.info("employe id = {}", eid);
+    	
+    	Possession p = employeesService.getPossession(pid);
+    	Item item = p.getItem();
+    	item.setQuantity(item.getQuantity() + 1);
+    	itemsService.updateItem(item);
+    	
+        employeesService.removePossession(pid);
+        return "redirect:/edit/" + eid;
     }
 }

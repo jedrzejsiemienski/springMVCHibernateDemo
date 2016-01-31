@@ -48,7 +48,7 @@
             <td>${possession.id}</td>
             <td>${possession.item.id}</td>
             <td>${possession.item.name}</td>
-            <td><a href="<c:url value='/remove/${possession.id}' />" >Delete</a></td>
+            <td><a href="<c:url value='/removePossession/${possession.id}/${employee.id}' />" >Delete</a></td>
         </tr>
     </c:forEach>
     </table>
