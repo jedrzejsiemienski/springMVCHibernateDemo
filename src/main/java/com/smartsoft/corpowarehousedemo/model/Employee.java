@@ -1,13 +1,18 @@
 package com.smartsoft.corpowarehousedemo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "employees")
@@ -26,6 +31,9 @@ public class Employee {
     @JoinColumn(name="position_id")
 	private Position position;
 
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="employee")
+	private Set<Possession> possessions;
+    
     public long getId(){
     	return id;
     }
@@ -56,5 +64,13 @@ public class Employee {
 
 	public void setPosition(Position position) {
 		this.position = position;
+	}
+	
+	public Set<Possession> getPossessions(){
+		return possessions;
+	}
+	
+	public void setPossessions(Set<Possession> possessions){
+		this.possessions = possessions;
 	}
 }
