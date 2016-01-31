@@ -38,7 +38,7 @@
 		<beans:property name="dataSource" ref="myDataSource"/>
 		<beans:property name="packagesToScan">
 			<beans:array>
-				<beans:value>com.test.springmvc</beans:value>
+				<beans:value>com.smartsoft.corpowarehousedemo</beans:value>
 			</beans:array>
 		</beans:property>
 		<beans:property name="hibernateProperties">
