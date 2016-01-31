@@ -10,16 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "positions")
-public class Position {
+@Table(name = "item_categories")
+public class ItemCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	private String name;
 	
-	@OneToMany(mappedBy="position")
-	private Set<Employee> employees;
+	@OneToMany(mappedBy="category")
+	private Set<Item> items;
 
 	public String getName() {
 		return name;
@@ -29,11 +29,11 @@ public class Position {
 		this.name = name;
 	}
 	
-	public Set<Employee>getEmployees() {
-		return employees;
+	public Set<Item>getItems() {
+		return items;
 	}
 
-	public void setEmployees(Set<Employee> employees) {
-		this.employees = employees;
+	public void setItems(Set<Item> items) {
+		this.items = items;
 	}
 }

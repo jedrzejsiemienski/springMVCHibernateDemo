@@ -10,21 +10,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "employees")
-public class Employee {
+@Table(name = "possessions")
+public class Possession {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private long id;
 	
-	private String name;
-	
-	@Column(name="last_name")
-	private String lastName;
+    @ManyToOne
+    @JoinColumn(name="employee_id")
+	private Employee employee;
 	
     @ManyToOne
-    @JoinColumn(name="position_id")
-	private Position position;
+    @JoinColumn(name="item_id")
+	private Item item;
 
     public long getId(){
     	return id;
@@ -34,27 +33,19 @@ public class Employee {
     	this.id = id;
     }
     
-	public String getName() {
-		return name;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	
-	public Position getPosition() {
-		return position;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setPosition(Position position) {
-		this.position = position;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 }
