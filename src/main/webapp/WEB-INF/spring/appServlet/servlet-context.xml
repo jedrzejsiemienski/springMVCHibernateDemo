@@ -31,5 +31,19 @@
 		<beans:property name="validationQuery" value="SELECT 1"/>
 	</beans:bean>
 	
+  	<!-- Hibernate Session Factory -->
+	<beans:bean id="mySessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<beans:property name="dataSource" ref="myDataSource"/>
+		<beans:property name="packagesToScan">
+			<beans:array>
+				<beans:value>com.test.springmvc</beans:value>
+			</beans:array>
+		</beans:property>
+		<beans:property name="hibernateProperties">
+			<beans:value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+			</beans:value>
+		</beans:property>
+	</beans:bean>
 	
 </beans:beans>
