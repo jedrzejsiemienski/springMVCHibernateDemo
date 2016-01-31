@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 public class BaseDAO<T> {
-	@Autowired protected SessionFactory sessionFactory;
+	@Autowired private SessionFactory sessionFactory;
 	
     @Transactional
     public void add(T entity) {
@@ -18,6 +18,21 @@ public class BaseDAO<T> {
     @Transactional
     public void update(T entity) {
     	sessionFactory.getCurrentSession().saveOrUpdate(entity);
+    }
+    
+    @Transactional
+    public T getById(Class<T> type, long id) {
+        Session session = sessionFactory.getCurrentSession();     
+        return (T) session.get(type, id);
+    }
+ 
+    @Transactional
+    public void remove(Class<T> type, long id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        T e = getById(type, id);
+        if(null != e){
+            session.delete(e);
+        }
     }
 	
 	@Transactional
