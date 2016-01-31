@@ -10,28 +10,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.smartsoft.corpowarehousedemo.dao.EmployeeDAO;
-import com.smartsoft.corpowarehousedemo.dao.PositionDAO;
-import com.smartsoft.corpowarehousedemo.model.Employee;
-import com.smartsoft.corpowarehousedemo.model.Position;
+import com.smartsoft.corpowarehousedemo.service.EmployeesService;
 
 @Controller
 public class EmployeesController {
-	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeesController.class);
 	
-	@Autowired private PositionDAO positionDAO;
-	@Autowired private EmployeeDAO employeeDAO;
+    @Autowired
+    private EmployeesService employeesService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String listEmployees(Model model) {
-		logger.info("listEmployees");
 		
-		List<Position> positions = positionDAO.findAll();
-		logger.info("list positions {}", positions);
-		
-		List<Employee> employees = employeeDAO.findAll();
-		logger.info("listEmployees {}", employees);
+		logger.info("list positions {}", employeesService.getPositions());
+		logger.info("list employees {}", employeesService.getEmployees());
 		
 		return "employee";
 	}
