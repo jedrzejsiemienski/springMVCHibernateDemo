@@ -34,26 +34,27 @@ public class EmployeesController {
     
     @RequestMapping(value = "/employees", method = RequestMethod.GET)
     public String listEmployees(Model model) {
-        model.addAttribute("employee", new Employee());
         model.addAttribute("listEmployees", employeesService.getEmployees());
         return "employee/list";
     }
      
-    //For add and update employee both
+    @RequestMapping(value= "/employee/add", method = RequestMethod.GET)
+    public String addEmployeView(Model model){
+        model.addAttribute("employee", new Employee());
+    	return "employee/create";
+    }
+    
     @RequestMapping(value= "/employee/add", method = RequestMethod.POST)
-    public String addEmployee(@ModelAttribute("employee") Employee p){
-         
+    public String addEmployeeAction(@ModelAttribute("employee") Employee p){
         if(p.getId() == 0){
-            //new employee, add it
             employeesService.addEmployee(p);
         }else{
-            //existing employee, call update
             employeesService.updateEmployee(p);
         }
-         
-        //return "redirect:/employees";
         return "redirect:/employee/edit/" + p.getId();
     }
+    
+    
      
     @RequestMapping("/employee/remove/{id}")
     public String removeEmployee(@PathVariable("id") int id){
@@ -78,7 +79,7 @@ public class EmployeesController {
         PossessionData pd = new PossessionData();
         pd.setEmployeeId((long)id);
         model.addAttribute("possessionData", pd);
-        return "employee/employee";
+        return "employee/edit";
     }
     
     @RequestMapping(value= "/employee/edit/addPossesion", method = RequestMethod.POST)

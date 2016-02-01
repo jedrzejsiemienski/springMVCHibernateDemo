@@ -25,13 +25,11 @@
         <th width="80">Employee ID</th>
         <th width="120">Employee Name</th>
         <th width="120">Employee Last Name</th>
-        <th width="120">Employee Position</th>
     </tr>
          <tr>
             <td>${employee.id}</td>
             <td>${employee.name}</td>
             <td>${employee.lastName}</td>
-            <td>${employee.position.name}</td>
         </tr>
      </table>
 </c:if>
