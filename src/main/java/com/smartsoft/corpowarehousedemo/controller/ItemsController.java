@@ -39,16 +39,10 @@ public class ItemsController {
     	item.setCategory(category);
     	
     	if(item.getId() != 0){
-    		logger.info("Updating item id {}", item.getId());
-    		logger.info("Updating item name {}", item.getName());
-    		logger.info("Updating item quantity {}", item.getQuantity());
-    		logger.info("Updating item category {}", item.getCategory());
     		itemsService.updateItem(item);
     	} else {
-    		logger.info("Adding item", item.getId());
         	if(item.getName() != ""){
         		itemsService.addItem(item);
-        		logger.info("item id {}", item.getId());
         	}
     	}
         return "redirect:/items";
