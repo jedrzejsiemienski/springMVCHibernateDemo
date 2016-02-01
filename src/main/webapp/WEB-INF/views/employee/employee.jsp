@@ -14,6 +14,8 @@
 </head>
 <body>
 
+<a href="<c:url value='/employees' />" >Back to list</a>
+
 <h1>
     Employee
 </h1>
@@ -48,7 +50,7 @@
             <td>${possession.id}</td>
             <td>${possession.item.id}</td>
             <td>${possession.item.name}</td>
-            <td><a href="<c:url value='/removePossession/${possession.id}/${employee.id}' />" >Delete</a></td>
+            <td><a href="<c:url value='/employee/removePossession/${possession.id}/${employee.id}' />" >Delete</a></td>
         </tr>
     </c:forEach>
     </table>

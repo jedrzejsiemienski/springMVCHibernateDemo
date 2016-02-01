@@ -52,16 +52,16 @@ public class EmployeesController {
         }
          
         //return "redirect:/employees";
-        return "redirect:/edit/" + p.getId();
+        return "redirect:/employee/edit/" + p.getId();
     }
      
-    @RequestMapping("/remove/{id}")
+    @RequestMapping("/employee/remove/{id}")
     public String removeEmployee(@PathVariable("id") int id){
         employeesService.removeEmployee(id);
         return "redirect:/employees";
     }
   
-    @RequestMapping("/edit/{id}")
+    @RequestMapping("/employee/edit/{id}")
     public String editEmployee(@PathVariable("id") int id, Model model){
     	Employee e = employeesService.getEmployee(id);
     	   	
@@ -81,7 +81,7 @@ public class EmployeesController {
         return "employee/employee";
     }
     
-    @RequestMapping(value= "/edit/addPossesion", method = RequestMethod.POST)
+    @RequestMapping(value= "/employee/edit/addPossesion", method = RequestMethod.POST)
 	public String addPossesionToEmployee(@ModelAttribute("possessionData") PossessionData pd){
     	
     	logger.info("item id = {}", pd.getItemId());
@@ -103,10 +103,10 @@ public class EmployeesController {
         	itemsService.updateItem(item);
     	}
     	
-    	return "redirect:/edit/" + pd.getEmployeeId();
+    	return "redirect:/employee/edit/" + pd.getEmployeeId();
     }
     
-    @RequestMapping("/removePossession/{pid}/{eid}")
+    @RequestMapping("/employee/removePossession/{pid}/{eid}")
     public String removePossession(@PathVariable("pid") long pid, @PathVariable("eid") long eid){
     	logger.info("pid = {}", pid);
     	logger.info("employe id = {}", eid);
@@ -117,6 +117,6 @@ public class EmployeesController {
     	itemsService.updateItem(item);
     	
         employeesService.removePossession(pid);
-        return "redirect:/edit/" + eid;
+        return "redirect:/employee/edit/" + eid;
     }
 }
