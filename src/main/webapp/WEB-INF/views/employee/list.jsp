@@ -21,7 +21,7 @@
         <th width="80">Employee ID</th>
         <th width="120">Employee Name</th>
         <th width="120">Employee Last Name</th>
-        <th width="60">Edit</th>
+        <th width="140">Manage possessions</th>
         <th width="60">Delete</th>
     </tr>
     <c:forEach items="${listEmployees}" var="employee">
@@ -29,7 +29,7 @@
             <td>${employee.id}</td>
             <td>${employee.name}</td>
             <td>${employee.lastName}</td>
-            <td><a href="<c:url value='/employee/edit/${employee.id}' />" >Edit</a></td>
+            <td><a href="<c:url value='/employee/edit/${employee.id}' />" >Manage possessions</a></td>
             <td><a href="<c:url value='/employee/remove/${employee.id}' />" >Delete</a></td>
         </tr>
     </c:forEach>
