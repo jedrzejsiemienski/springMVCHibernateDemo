@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name = "possessions")
-public class Possession {
+public class Possession implements Comparable<Possession>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
@@ -48,4 +48,15 @@ public class Possession {
 	public void setItem(Item item) {
 		this.item = item;
 	}
+
+	@Override
+	public int compareTo(Possession p) {
+		if(item != null && p.getItem() != null && item.getId() != p.getItem().getId()){
+			return (int)(item.getId() - p.getItem().getId());
+		} else {
+			return (int)(id - p.getId());
+		}
+	}
+	
+	
 }
