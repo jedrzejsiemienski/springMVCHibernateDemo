@@ -1,6 +1,7 @@
 package com.smartsoft.corpowarehousedemo.controller;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import com.smartsoft.corpowarehousedemo.model.Possession;
 import com.smartsoft.corpowarehousedemo.model.PossessionData;
 import com.smartsoft.corpowarehousedemo.service.EmployeesService;
 import com.smartsoft.corpowarehousedemo.service.ItemsService;
+import com.smartsoft.corpowarehousedemo.utils.Utils;
 
 @Controller
 public class EmployeesController {
@@ -65,8 +67,10 @@ public class EmployeesController {
     		}
     	}
     	
+    	List<Possession> possessionsSorted = Utils.asSortedList(e.getPossessions());
+    	
         model.addAttribute("employee", e);
-        model.addAttribute("possessions", e.getPossessions());
+        model.addAttribute("possessions", possessionsSorted);
         model.addAttribute("items", items);
         PossessionData pd = new PossessionData();
         pd.setEmployeeId((long)id);
