@@ -42,11 +42,7 @@ public class EmployeesController {
     
     @RequestMapping(value= "/employee/add", method = RequestMethod.POST)
     public String addEmployeeAction(@ModelAttribute("employee") Employee p){
-        if(p.getId() == 0){
-            employeesService.addEmployee(p);
-        }else{
-            employeesService.updateEmployee(p);
-        }
+    	employeesService.addEmployee(p);
         return "redirect:/employee/edit/" + p.getId();
     }
     
