@@ -14,31 +14,43 @@
 </head>
 <body>
 
-<h1>Employees List</h1>
-<c:if test="${!empty listEmployees}">
-    <table class="tg">
+<a href="<c:url value='/employees' />" >Back to employees list</a>
+
+<h1>
+    Add a Employee
+</h1>
+ 
+<c:url var="addAction" value="/employee/add" ></c:url>
+ 
+<form:form action="${addAction}" commandName="employee">
+<table>
+
     <tr>
-        <th width="80">Employee ID</th>
-        <th width="120">Employee Name</th>
-        <th width="120">Employee Last Name</th>
-        <th width="60">Edit</th>
-        <th width="60">Delete</th>
+        <td>
+            <form:label path="name">
+                <spring:message text="Name"/>
+            </form:label>
+        </td>
+        <td>
+            <form:input path="name" />
+        </td>
     </tr>
-    <c:forEach items="${listEmployees}" var="employee">
-        <tr>
-            <td>${employee.id}</td>
-            <td>${employee.name}</td>
-            <td>${employee.lastName}</td>
-            <td><a href="<c:url value='/employee/edit/${employee.id}' />" >Edit</a></td>
-            <td><a href="<c:url value='/employee/remove/${employee.id}' />" >Delete</a></td>
-        </tr>
-    </c:forEach>
-    </table>
-</c:if>
+    
+    <tr>
+        <td>
+            <form:label path="lastName">
+                <spring:message text="Last Name"/>
+            </form:label>
+        </td>
+        <td>
+            <form:input path="lastName" />
+        </td>
+    </tr>
 
-<a href="<c:url value='/employee/add' />" >Add an employee</a>
-<br>
-<a href="<c:url value='/items' />" >Manage items</a>
-
-</body>
-</html>
+    <tr>
+        <td colspan="2">
+			<input type="submit" value="<spring:message text="Add Employee"/>" />
+        </td>
+    </tr>
+</table> 
+</form:form>

@@ -1,11 +1,8 @@
 package com.smartsoft.corpowarehousedemo.controller;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.smartsoft.corpowarehousedemo.model.Employee;
 import com.smartsoft.corpowarehousedemo.model.Item;
-import com.smartsoft.corpowarehousedemo.model.Position;
 import com.smartsoft.corpowarehousedemo.model.Possession;
 import com.smartsoft.corpowarehousedemo.model.PossessionData;
 import com.smartsoft.corpowarehousedemo.service.EmployeesService;

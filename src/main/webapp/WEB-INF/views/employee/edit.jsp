@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<a href="<c:url value='/employees' />" >Back to list</a>
+<a href="<c:url value='/employees' />" >Back to employees list</a>
 
 <h1>
     Employee
