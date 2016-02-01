@@ -35,6 +35,7 @@ public class ItemsController {
     @RequestMapping(value= "/item/add", method = RequestMethod.POST)
     public String addItemAction(@ModelAttribute("item") Item item){
 
+    	//set first category as default, didnt have time to finish it
     	ItemCategory category = itemsService.getItemCategories().get(0);
     	item.setCategory(category);
     	
